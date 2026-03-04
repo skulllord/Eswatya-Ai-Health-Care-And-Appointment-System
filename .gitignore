@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv/
+venv/
+ENV/
+env/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+dist-ssr/
+*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Database (optional - uncomment if you don't want to push the database)
+# backend/eswatya_healthcare.db
+
+# Model files (large files - >100MB, excluded from Git)
+# Users need to train the model locally using train_model_xgboost.py
+backend/model.pkl
+backend/label_encoder.pkl
+backend/feature_columns.pkl
+
+# Dataset (large file - >100MB, excluded from Git)
+# Users need to download separately or use smaller dataset
+backend/Final_Augmented_dataset_Diseases_and_Symptoms.csv
+
+# Old/temporary files
+backend/filtered_top100_dataset.csv
+backend/confusion_matrix.png
+
+# Test files (optional - uncomment to exclude)
+# test_*.py
+# test_*.html
+# test_*.ps1
+# troubleshoot_*.ps1
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

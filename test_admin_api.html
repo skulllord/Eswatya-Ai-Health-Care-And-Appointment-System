@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Admin API</title>
+</head>
+<body>
+    <h1>Admin API Test</h1>
+    <button onclick="testAdminLogin()">1. Test Admin Login</button>
+    <button onclick="testGetDoctors()">2. Test Get Doctors</button>
+    <button onclick="clearStorage()">Clear Storage</button>
+    <pre id="output"></pre>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        const output = document.getElementById('output');
+
+        function log(message) {
+            output.textContent += message + '\n';
+            console.log(message);
+        }
+
+        async function testAdminLogin() {
+            output.textContent = '';
+            log('Testing admin login...');
+            
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: 'admin',
+                        password: 'admin123',
+                        user_type: 'admin'
+                    })
+                });
+
+                const data = await response.json();
+                log('Response status: ' + response.status);
+                log('Response data: ' + JSON.stringify(data, null, 2));
+
+                if (data.access_token) {
+                    localStorage.setItem('token', data.access_token);
+                    localStorage.setItem('userType', data.user_type);
+                    log('✅ Token saved to localStorage');
+                } else {
+                    log('❌ No token in response');
+                }
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+            }
+        }
+
+        async function testGetDoctors() {
+            output.textContent = '';
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                log('❌ No token found. Please login first.');
+                return;
+            }
+
+            log('Testing get doctors with token...');
+            log('Token: ' + token.substring(0, 20) + '...');
+
+            try {
+                const response = await fetch(`${API_URL}/admin/doctors`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                log('Response status: ' + response.status);
+                
+                const data = await response.json();
+                log('Number of doctors: ' + data.length);
+                log('First doctor: ' + JSON.stringify(data[0], null, 2));
+                log('✅ Successfully fetched ' + data.length + ' doctors');
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+            }
+        }
+
+        function clearStorage() {
+            localStorage.clear();
+            output.textContent = 'Storage cleared\n';
+        }
+
+        // Auto-check on load
+        window.onload = function() {
+            const token = localStorage.getItem('token');
+            const userType = localStorage.getItem('userType');
+            log('Current token: ' + (token ? token.substring(0, 20) + '...' : 'None'));
+            log('Current userType: ' + (userType || 'None'));
+        };
+    </script>
+</body>
+</html>
