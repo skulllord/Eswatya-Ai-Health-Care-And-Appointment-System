@@ -50,15 +50,8 @@ Thumbs.db
 # Database (optional - uncomment if you don't want to push the database)
 # backend/eswatya_healthcare.db
 
-# Model files (large files - >100MB, excluded from Git)
-# Users need to train the model locally using train_model_xgboost.py
-backend/model.pkl
-backend/label_encoder.pkl
-backend/feature_columns.pkl
-
-# Dataset (large file - >100MB, excluded from Git)
-# Users need to download separately or use smaller dataset
-backend/Final_Augmented_dataset_Diseases_and_Symptoms.csv
+# Model files and dataset now tracked with Git LFS
+# See .gitattributes for LFS configuration
 
 # Old/temporary files
 backend/filtered_top100_dataset.csv
