@@ -46,6 +46,7 @@ An intelligent healthcare platform powered by AI for disease prediction, doctor 
 - Python 3.11+
 - Node.js 16+
 - npm or yarn
+- Git LFS (for model files)
 
 ### Installation
 
@@ -55,6 +56,8 @@ git clone https://github.com/skulllord/Eswatya-Ai-Health-Care-And-Appointment-Sy
 cd Eswatya-Ai-Health-Care-And-Appointment-System
 ```
 
+**Note**: Model files (526 MB) are included via Git LFS and will download automatically.
+
 2. **Setup Backend**
 ```bash
 cd backend
@@ -62,7 +65,7 @@ python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python init_db.py  # Initialize database
-python main.py     # Start backend server
+python main.py     # Start backend server (model loads automatically!)
 ```
 
 3. **Setup Frontend**
@@ -76,6 +79,15 @@ npm run dev
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:8000
 - API Docs: http://localhost:8000/docs
+
+### ✅ Model Files Included
+This repository includes pre-trained model files via Git LFS:
+- **model.pkl** (319 MB) - XGBoost model with 83.63% accuracy
+- **label_encoder.pkl** - Disease label encoder
+- **feature_columns.pkl** - Symptom features
+- **Dataset** (182 MB) - Complete training dataset
+
+**No training required!** Clone and run immediately.
 
 ## 🔐 Default Credentials
 
